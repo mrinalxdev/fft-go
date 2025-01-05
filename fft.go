@@ -13,8 +13,12 @@ func ParallelFFT(input []complex128) []complex128 {
 		return input
 	}
 
-	//spliting the input into even and
+	// spliting the input into even and
 	// odd incdices
+
+	// this splits the data and
+	// fiddle factor
+	// w = z (5 * 4)
 
 	even := make([]complex128, n/2)
 	odd := make([]complex128, n/2)

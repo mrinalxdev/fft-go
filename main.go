@@ -10,13 +10,22 @@ func main(){
 	n := 1024
 	signal := generateSignal(n)
 
+	if err := plotSignal(signal, "input_signal.png"); err != nil {
+		fmt.Printf("Error Plotting signal : %v\n", err)
+		return
+	}
+
+	fmt.Println("Input signal plot saved as 'input_signal.png'")
+
+
 	start := time.Now()
 	result := ParallelFFT(signal)
 	elapsed := time.Since(start)
 
-	fmt.Printf("FFT completed in %v\n", elapsed)
-	fmt.Println("First 10 FFT results : ")
-	for i := 0; i < 10; i++ {
-		fmt.Printf("Result[%d]: %v\n", i, result[i])
+	if err := plotFFT(result, "fft_magnitude.png"); err != nil {
+		fmt.Printf("Error plotting FFT: %v\n", err)
+		return
 	}
+	fmt.Println("FFT magnitude spectrum plot saved as 'fft_magnitude.png'")
+	fmt.Printf("FFT completed in %v\n", elapsed)
 }
